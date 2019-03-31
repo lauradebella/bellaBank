@@ -26,7 +26,7 @@ public class AccountControllerTest extends JerseyTest {
                         "\t\"name\": \"laura122\"\n" +
                         "}"));
 
-        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+        assertEquals(Response.Status.CREATED.getStatusCode(), response.getStatus());
     }
 
     @Test

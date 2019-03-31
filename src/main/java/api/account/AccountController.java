@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 
 @Path("account")
 public class AccountController {
@@ -21,7 +22,7 @@ public class AccountController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createAccount(AccountRequest accountRequest) {
         Account account = accountService.save(accountRequest.getAccount());
-        return Response.ok().entity(account).build();
+        return Response.created(URI.create("/account/" + account.getId())).entity(account).build();
     }
 
     @GET
