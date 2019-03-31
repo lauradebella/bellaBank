@@ -1,5 +1,9 @@
 package api.transaction;
 
+import api.account.Account;
+import api.account.AccountService;
+import javassist.NotFoundException;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -10,13 +14,19 @@ public class TransactionService {
     public static final int CONSTANT_TO_LESS_THAN = -1;
 
     private EntityManager entityManager;
+    private AccountService accountService;
+
 
     @Inject
-    public TransactionService(EntityManager entityManager) {
+    public TransactionService(EntityManager entityManager, AccountService accountService) {
+        this.accountService = accountService;
         this.entityManager = entityManager;
     }
 
     public TransactionStatus execute(Transaction debitTransaction, Transaction creditTransaction) {
+
+        validateIfAccountExists(debitTransaction.getAccountId());
+        validateIfAccountExists(creditTransaction.getAccountId());
 
         entityManager.getTransaction().begin();
 
@@ -37,6 +47,10 @@ public class TransactionService {
         entityManager.clear();
 
         return TransactionStatus.PROCESSED;
+    }
+
+    private void validateIfAccountExists(Long accountId) {
+            accountService.getAccountById(accountId);
     }
 
 }

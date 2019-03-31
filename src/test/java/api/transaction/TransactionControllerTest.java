@@ -34,12 +34,24 @@ public class TransactionControllerTest  extends JerseyTest {
     public void returnBadRequestWhenTransactionFails() {
         Response response = target("/transaction").request(MediaType.APPLICATION_JSON)
                 .post(Entity.json("{\n" +
-                        "\t\"originAccountId\": 102,\n" +
+                        "\t\"originAccountId\": 1,\n" +
                         "\t\"destinationAccountId\": 2,\n" +
                         "\t\"value\": 40000\n" +
                         "}"));
 
         assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void returnNotFoundWhenAccountDoesNotExist() {
+        Response response = target("/transaction").request(MediaType.APPLICATION_JSON)
+                .post(Entity.json("{\n" +
+                        "\t\"originAccountId\": 102,\n" +
+                        "\t\"destinationAccountId\": 2,\n" +
+                        "\t\"value\": 40\n" +
+                        "}"));
+
+        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
     }
 
 }
