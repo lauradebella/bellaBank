@@ -8,7 +8,7 @@
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:~/dev/db/h2" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:bank" />
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
 
             <property name="javax.persistence.sql-load-script-source"
