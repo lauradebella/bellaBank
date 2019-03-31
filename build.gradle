@@ -12,6 +12,11 @@ jar {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'Application'
+}
+
 repositories {
     jcenter()
 }
@@ -36,3 +41,4 @@ dependencies {
     testCompile group: 'org.glassfish.jersey.test-framework', name: 'jersey-test-framework-core', version: '2.13'
     testCompile group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-jetty', version: '2.28'
 }
+
