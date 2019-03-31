@@ -59,6 +59,11 @@ curl -XPOST localhost:8080/transaction -H 'Content-Type: application/json' -d '{
 }'
 ```
 
+Since you need balance to transfer money between accounts, there is a seed script that create two accounts and put balance on them. 
+
+Account with id = 1 have 100.00 of balance and account with id = 2 have 170.00 of balance to be used. 
+
+
 [No curl?](https://onlinecurl.com/)
 
 You can also use the postman collection on /postman to reach the endpoints using postman.
