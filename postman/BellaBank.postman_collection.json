@@ -6,7 +6,25 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/account",
+			"name": "Create account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a3b6a603-f435-43ae-97fc-1d5f30aa40b8",
+						"exec": [
+							"tests[\"response code is 201\"] = responseCode.code === 201;",
+							"",
+							"if (responseCode.code === 201) {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    ",
+							"    postman.setGlobalVariable(\"accountId\", jsonData.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -30,6 +48,85 @@
 					"port": "8080",
 					"path": [
 						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "624e8292-36bd-4441-98ca-2f8640303bd6",
+						"exec": [
+							"tests[\"response code is 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/account/{{accountId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"{{accountId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create transaction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a3920263-728a-4655-99d8-c7e94ab1169e",
+						"exec": [
+							"tests[\"response code is 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"originAccountId\": 1,\n\t\"destinationAccountId\": {{accountId}},\n\t\"value\": 10\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction"
 					]
 				}
 			},
