@@ -2,8 +2,6 @@ package api.account;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import java.util.List;
-
 public class AccountService {
 
     private EntityManager entityManager;

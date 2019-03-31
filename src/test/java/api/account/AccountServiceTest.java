@@ -38,6 +38,5 @@ public class AccountServiceTest {
         verify(entityManager).persist(account);
         assertEquals(account.getName(), savedAccount.getName());
         assertEquals(account.getPassportNumber(), savedAccount.getPassportNumber());
-
     }
 }
