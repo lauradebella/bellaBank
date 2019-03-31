@@ -22,9 +22,9 @@ public class TransactionService {
 
         entityManager.persist(debitTransaction);
 
-        final Query sumQuery = entityManager.createNamedQuery("Transaction.findByAccount");
-        sumQuery.setParameter("ACCOUNT",debitTransaction.getAccountId());
-        final Object balance = sumQuery.getSingleResult() == null ? BigDecimal.valueOf(0) : sumQuery.getSingleResult();
+        final Query balanceQuery = entityManager.createNamedQuery("Transaction.findByAccount");
+        balanceQuery.setParameter("ACCOUNT",debitTransaction.getAccountId());
+        final Object balance = balanceQuery.getSingleResult() == null ? BigDecimal.valueOf(0) : balanceQuery.getSingleResult();
 
         BigDecimal balanceOnOriginAccount = (BigDecimal) balance;
         if(balanceOnOriginAccount.compareTo(BigDecimal.ZERO) == CONSTANT_TO_LESS_THAN) {

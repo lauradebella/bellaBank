@@ -19,12 +19,20 @@ public class AccountControllerTest extends JerseyTest {
     }
 
     @Test
-    public void hello() {
+    public void shouldReturnOkWhenAccountIsCreated() {
         Response response = target("/account").request(MediaType.APPLICATION_JSON)
                 .post(Entity.json("{\n" +
                         "\t\"passportNumber\": \"qert\",\n" +
                         "\t\"name\": \"laura122\"\n" +
                         "}"));
+
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void shouldReturnOkWhenAccountExists() {
+        Response response = target("/account/1").request(MediaType.APPLICATION_JSON)
+                .get();
 
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }

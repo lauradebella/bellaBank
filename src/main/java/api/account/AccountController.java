@@ -21,4 +21,12 @@ public class AccountController {
         return Response.ok().entity(account).build();
     }
 
+    @GET
+    @Path("/{accountId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllAccounts(@PathParam("accountId") Long accountId){
+        Account account = accountService.getAccountById(accountId);
+        return Response.ok().entity(account).build();
+    }
+
 }

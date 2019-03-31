@@ -2,6 +2,8 @@ package api.account;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 public class AccountService {
 
     private EntityManager entityManager;
@@ -21,4 +23,9 @@ public class AccountService {
         return account;
     }
 
+    public Account getAccountById(Long accountId) {
+        final Query findAccountById = entityManager.createNamedQuery("Account.findById");
+        findAccountById.setParameter("ACCOUNTID",accountId);
+        return (Account) findAccountById.getSingleResult();
+    }
 }
