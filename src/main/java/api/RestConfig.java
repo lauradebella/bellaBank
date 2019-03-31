@@ -6,10 +6,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.ApplicationPath;
 
 @ApplicationPath("/")
-public class RestConfig extends ResourceConfig
-{
-    public RestConfig()
-    {
+public class RestConfig extends ResourceConfig {
+    public RestConfig() {
         packages(this.getClass().getPackage().getName());
         register(new BinderConfig());
         register(JacksonFeature.class);

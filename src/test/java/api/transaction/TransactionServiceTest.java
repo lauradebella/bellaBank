@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-
 import java.math.BigDecimal;
 
 import static junit.framework.TestCase.assertEquals;

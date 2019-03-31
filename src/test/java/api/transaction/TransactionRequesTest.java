@@ -19,7 +19,7 @@ public class TransactionRequesTest {
     }
 
     @Test
-    public void shouldReturnDebitTransaction(){
+    public void shouldReturnDebitTransaction() {
 
         Transaction debitTransaction = transactionRequest.getDebitTransaction();
 
@@ -30,7 +30,7 @@ public class TransactionRequesTest {
     }
 
     @Test
-    public void shouldReturnCreditTransaction(){
+    public void shouldReturnCreditTransaction() {
 
         Transaction creditTransaction = transactionRequest.getCreditTransaction();
 

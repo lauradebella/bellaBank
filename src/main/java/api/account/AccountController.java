@@ -28,11 +28,11 @@ public class AccountController {
     @GET
     @Path("/{accountId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAccountById(@PathParam("accountId") Long accountId){
+    public Response getAccountById(@PathParam("accountId") Long accountId) {
         try {
             Account account = accountService.getAccountById(accountId);
             return Response.ok().entity(account).build();
-        }catch (NoResultException exception) {
+        } catch (NoResultException exception) {
             return Response.status(HttpStatus.NOT_FOUND_404).build();
         }
     }

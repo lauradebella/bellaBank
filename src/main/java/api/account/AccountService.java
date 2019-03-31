@@ -25,7 +25,7 @@ public class AccountService {
 
     public Account getAccountById(Long accountId) {
         final Query findAccountById = entityManager.createNamedQuery("Account.findById");
-        findAccountById.setParameter("ACCOUNTID",accountId);
+        findAccountById.setParameter("ACCOUNTID", accountId);
         return (Account) findAccountById.getSingleResult();
     }
 }

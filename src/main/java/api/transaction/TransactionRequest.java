@@ -31,13 +31,13 @@ public class TransactionRequest {
         return value;
     }
 
-    public Transaction getDebitTransaction(){
+    public Transaction getDebitTransaction() {
         return new Transaction(TransactionType.DEBIT,
                 this.originAccountId,
                 this.value);
     }
 
-    public Transaction getCreditTransaction(){
+    public Transaction getCreditTransaction() {
         return new Transaction(TransactionType.CREDIT,
                 this.destinationAccountId,
                 this.value);

@@ -1,10 +1,9 @@
 package api.account;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
-@NamedQuery(name="Account.findById", query="SELECT a from Account a WHERE a.id=:ACCOUNTID")
+@NamedQuery(name = "Account.findById", query = "SELECT a from Account a WHERE a.id=:ACCOUNTID")
 public class Account {
 
 

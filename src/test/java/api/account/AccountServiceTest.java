@@ -9,8 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -53,7 +53,7 @@ public class AccountServiceTest {
         when(mockedQuery.getSingleResult()).thenReturn(expectedAccount);
 
         Long accountId = Long.valueOf(1);
-        Account account  = accountService.getAccountById(accountId);
+        Account account = accountService.getAccountById(accountId);
 
         assertEquals(account.getPassportNumber(), expectedAccount.getPassportNumber());
         assertEquals(account.getName(), expectedAccount.getName());
@@ -67,6 +67,6 @@ public class AccountServiceTest {
         when(mockedQuery.getSingleResult()).thenThrow(NotFoundException.class);
 
         Long accountId = Long.valueOf(1);
-        Account account  = accountService.getAccountById(accountId);
+        Account account = accountService.getAccountById(accountId);
     }
 }

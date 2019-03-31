@@ -2,12 +2,12 @@ package api.account;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AccountRequestTest {
 
     @Test
-    public void shouldReturnAccountEntityForRequest(){
+    public void shouldReturnAccountEntityForRequest() {
         AccountRequest request = new AccountRequest("Passport", "Beyonce");
 
         Account account = request.getAccount();

@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 
 @Entity
 @NamedQuery(name = "Transaction.findByAccount",
-                query="SELECT SUM(CASE WHEN t.transactionType = 0 THEN (t.value * -1) ELSE (t.value) END) " +
-                        "FROM Transaction t WHERE t.accountId=:ACCOUNT")
+        query = "SELECT SUM(CASE WHEN t.transactionType = 0 THEN (t.value * -1) ELSE (t.value) END) " +
+                "FROM Transaction t WHERE t.accountId=:ACCOUNT")
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

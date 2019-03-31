@@ -1,8 +1,6 @@
 package api.transaction;
 
-import api.account.Account;
 import api.account.AccountService;
-import javassist.NotFoundException;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -33,11 +31,11 @@ public class TransactionService {
         entityManager.persist(debitTransaction);
 
         final Query balanceQuery = entityManager.createNamedQuery("Transaction.findByAccount");
-        balanceQuery.setParameter("ACCOUNT",debitTransaction.getAccountId());
+        balanceQuery.setParameter("ACCOUNT", debitTransaction.getAccountId());
         final Object balance = balanceQuery.getSingleResult() == null ? BigDecimal.valueOf(0) : balanceQuery.getSingleResult();
 
         BigDecimal balanceOnOriginAccount = (BigDecimal) balance;
-        if(balanceOnOriginAccount.compareTo(BigDecimal.ZERO) == CONSTANT_TO_LESS_THAN) {
+        if (balanceOnOriginAccount.compareTo(BigDecimal.ZERO) == CONSTANT_TO_LESS_THAN) {
             entityManager.getTransaction().rollback();
             return TransactionStatus.NOT_ENOUGH_FUNDS;
         }
@@ -50,7 +48,7 @@ public class TransactionService {
     }
 
     private void validateIfAccountExists(Long accountId) {
-            accountService.getAccountById(accountId);
+        accountService.getAccountById(accountId);
     }
 
 }
