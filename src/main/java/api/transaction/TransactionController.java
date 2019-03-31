@@ -1,5 +1,7 @@
 package api.transaction;
 
+import org.eclipse.jetty.http.HttpStatus;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
@@ -28,6 +30,9 @@ public class TransactionController {
 
         TransactionResponse response =  new TransactionResponse(debitTransaction.getAccountId(), creditTransaction.getAccountId(), debitTransaction.getValue(), transactionStatus);
 
+        if(transactionStatus == TransactionStatus.NOT_ENOUGH_FUNDS) {
+            return Response.status(HttpStatus.BAD_REQUEST_400).entity(response).build();
+        }
         return Response.ok().entity(response).build();
     }
 

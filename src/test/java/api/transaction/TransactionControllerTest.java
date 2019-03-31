@@ -30,4 +30,16 @@ public class TransactionControllerTest  extends JerseyTest {
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
 
+    @Test
+    public void returnBadRequestWhenTransactionFails() {
+        Response response = target("/transaction").request(MediaType.APPLICATION_JSON)
+                .post(Entity.json("{\n" +
+                        "\t\"originAccountId\": 102,\n" +
+                        "\t\"destinationAccountId\": 2,\n" +
+                        "\t\"value\": 40000\n" +
+                        "}"));
+
+        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), response.getStatus());
+    }
+
 }
