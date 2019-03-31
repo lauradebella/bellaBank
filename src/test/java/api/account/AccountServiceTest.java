@@ -1,5 +1,6 @@
 package api.account;
 
+import javassist.NotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -37,7 +38,7 @@ public class AccountServiceTest {
         when(entityManager.getTransaction()).thenReturn(transaction);
 
         Account account = new Account("Passport", "Madonna");
-        Account savedAccount = accountService.save(account);
+        Account savedAccount = accountService.createAccount(account);
 
         verify(entityManager).persist(account);
         assertEquals(account.getName(), savedAccount.getName());
@@ -56,6 +57,16 @@ public class AccountServiceTest {
 
         assertEquals(account.getPassportNumber(), expectedAccount.getPassportNumber());
         assertEquals(account.getName(), expectedAccount.getName());
+    }
 
+    @Test(expected = NotFoundException.class)
+    public void shouldThrowExceptionIfAccountDoesNotExist() {
+
+        when(entityManager.createNamedQuery("Account.findById")).thenReturn(mockedQuery);
+        Account expectedAccount = new Account("Passport", "Madonna");
+        when(mockedQuery.getSingleResult()).thenThrow(NotFoundException.class);
+
+        Long accountId = Long.valueOf(1);
+        Account account  = accountService.getAccountById(accountId);
     }
 }
