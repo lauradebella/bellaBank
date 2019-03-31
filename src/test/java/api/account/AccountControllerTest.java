@@ -37,4 +37,12 @@ public class AccountControllerTest extends JerseyTest {
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
 
+    @Test
+    public void shouldReturnNotFoundWhenAccountDoesNotExists() {
+        Response response = target("/account/11234").request(MediaType.APPLICATION_JSON)
+                .get();
+
+        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), response.getStatus());
+    }
+
 }
