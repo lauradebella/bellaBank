@@ -11,6 +11,7 @@ public class RestConfig extends ResourceConfig
     public RestConfig()
     {
         packages(this.getClass().getPackage().getName());
+        register(new BinderConfig());
         register(JacksonFeature.class);
     }
 }
