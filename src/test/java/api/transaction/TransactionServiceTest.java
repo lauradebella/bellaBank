@@ -3,7 +3,6 @@ package api.transaction;
 import api.account.Account;
 import api.account.AccountService;
 import javassist.NotFoundException;
-import org.eclipse.jetty.util.annotation.ManagedObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

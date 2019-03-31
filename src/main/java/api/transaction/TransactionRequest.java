@@ -31,7 +31,6 @@ public class TransactionRequest {
         return value;
     }
 
-
     public Transaction getDebitTransaction(){
         return new Transaction(TransactionType.DEBIT,
                 this.originAccountId,

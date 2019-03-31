@@ -21,14 +21,14 @@ public class AccountController {
     @Consumes("application/json")
     @Produces(MediaType.APPLICATION_JSON)
     public Response createAccount(AccountRequest accountRequest) {
-        Account account = accountService.save(accountRequest.getAccount());
+        Account account = accountService.createAccount(accountRequest.getAccount());
         return Response.created(URI.create("/account/" + account.getId())).entity(account).build();
     }
 
     @GET
     @Path("/{accountId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllAccounts(@PathParam("accountId") Long accountId){
+    public Response getAccountById(@PathParam("accountId") Long accountId){
         try {
             Account account = accountService.getAccountById(accountId);
             return Response.ok().entity(account).build();

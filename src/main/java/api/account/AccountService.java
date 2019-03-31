@@ -13,7 +13,7 @@ public class AccountService {
         this.entityManager = entityManager;
     }
 
-    public Account save(Account account) {
+    public Account createAccount(Account account) {
 
         entityManager.getTransaction().begin();
         entityManager.persist(account);

@@ -19,7 +19,7 @@ public class TransactionControllerTest  extends JerseyTest {
     }
 
     @Test
-    public void returnOkWhenTransactionSucceeds() {
+    public void shouldReturnOkWhenTransactionSucceeds() {
         Response response = target("/transaction").request(MediaType.APPLICATION_JSON)
                 .post(Entity.json("{\n" +
                         "\t\"originAccountId\": 1,\n" +
@@ -31,7 +31,7 @@ public class TransactionControllerTest  extends JerseyTest {
     }
 
     @Test
-    public void returnBadRequestWhenTransactionFails() {
+    public void shouldReturnBadRequestWhenTransactionFails() {
         Response response = target("/transaction").request(MediaType.APPLICATION_JSON)
                 .post(Entity.json("{\n" +
                         "\t\"originAccountId\": 1,\n" +
@@ -43,7 +43,7 @@ public class TransactionControllerTest  extends JerseyTest {
     }
 
     @Test
-    public void returnNotFoundWhenAccountDoesNotExist() {
+    public void shouldReturnNotFoundWhenAccountDoesNotExist() {
         Response response = target("/transaction").request(MediaType.APPLICATION_JSON)
                 .post(Entity.json("{\n" +
                         "\t\"originAccountId\": 102,\n" +
